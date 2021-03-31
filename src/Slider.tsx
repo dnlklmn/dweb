@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     "& .MuiSlider-track": {
       height: 10,
       paddingRight: 5,
+      transition: "all 0.1s ease",
     },
     "& .MuiSlider-thumb": {
       height: 20,

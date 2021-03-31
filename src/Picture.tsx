@@ -23,7 +23,11 @@ export const Picture = ({
   return (
     <ThemeProvider theme={theme}>
       <div
-        style={{ position: "relative", width: "100%", height: "100%" }}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+        }}
         onMouseOver={() => {
           setShowBorder("block");
         }}
@@ -74,6 +78,7 @@ export const Picture = ({
             position: "relative",
             top: 8 + unit * 2,
             left: 8 + unit * 2,
+            transition: "all 0.5s ease",
           }}
         ></div>
       </div>

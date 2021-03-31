@@ -44,9 +44,11 @@ function App() {
         </style>
         <Router>
           <Grid container spacing={2} justify="center" alignContent="center">
-            <Grid item xs={12}>
-              <Header menu={menu} unit={unit} onChange={handleChange} />
-            </Grid>
+            <Route exact path={["/", "/works", "/contact", "/blog"]}>
+              <Grid item xs={12}>
+                <Header menu={menu} unit={unit} onChange={handleChange} />
+              </Grid>
+            </Route>
             <Route exact path="/">
               <Grid item xs={12} sm={10} container justify="center" spacing={6}>
                 <Grid item xs={12} className={classes.items}>
@@ -75,19 +77,23 @@ function App() {
                 </Grid>
               </Grid>
             </Route>
+            <Switch>
+              <Route exact path="/works">
+                <Gallery unit={unit} />
+              </Route>
+              <Route path="/blog">
+                <span>Blog</span>
+              </Route>
+              <Route path="/contact">
+                <span>Contact</span>
+              </Route>
+            </Switch>
+            <Route exact path="/works/satoshipay-micro">
+              <Grid item xs={12}>
+                <Header menu={menu} unit={unit} onChange={handleChange} sub />
+              </Grid>
+            </Route>
           </Grid>
-
-          <Switch>
-            <Route path="/works">
-              <Gallery unit={unit} />
-            </Route>
-            <Route path="/blog">
-              <span>Blog</span>
-            </Route>
-            <Route path="/contact">
-              <span>Contact</span>
-            </Route>
-          </Switch>
         </Router>
       </ThemeProvider>
     </div>

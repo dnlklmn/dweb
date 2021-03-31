@@ -37,12 +37,12 @@ export const Gallery = ({ unit }: GalleryProps) => {
   const classes = useStyles();
 
   return (
-    <div style={{ padding: 8 + unit * 2 }}>
+    <div>
       <Grid
         container
         xs={12}
         lg={10}
-        spacing={unit < 6 ? 4 : 8}
+        spacing={6}
         justify="center"
         className={classes.mainGrid}
       >
@@ -59,6 +59,7 @@ export const Gallery = ({ unit }: GalleryProps) => {
                 paddingLeft: 12 + Math.random() * unit * 10,
                 paddingRight: 12 + Math.random() * unit * 10,
                 paddingBottom: 12 + Math.random() * unit * 5,
+                transition: "all 0.23s ease-in-out",
               }}
             >
               <Link to={`/works/${item.url}`}>

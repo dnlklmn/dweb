@@ -33,7 +33,7 @@ const useStyles = makeStyles({
       boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
     },
     "&.textOnly": {
-      padding: 0,
+      padding: "16px 0",
       margin: 0,
       boxShadow: `inset 0 0 0 0px ${theme.palette.primary.main}`,
     },

@@ -10,6 +10,7 @@ interface HeaderProps {
   menu: [string];
   unit: number;
   onChange: any;
+  sub: boolean;
 }
 
 const useStyles = makeStyles({
@@ -50,10 +51,21 @@ const useStyles = makeStyles({
   },
 });
 
-export const Header = ({ menu, unit, onChange }: HeaderProps) => {
+export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
   const classes = useStyles();
 
   const [home, setHome] = React.useState(true);
+
+  const slider = <Slider unit={unit} onChange={onChange} />;
+  const menuComponent = (
+    <Menu
+      menu={menu}
+      home={home}
+      onClick={() => {
+        setHome(false);
+      }}
+    />
+  );
 
   return (
     <Grid
@@ -64,10 +76,18 @@ export const Header = ({ menu, unit, onChange }: HeaderProps) => {
       alignItems="center"
     >
       <Grid container item xs={8} alignItems="center">
-        <Grid item xs={6} style={{ maxWidth: 180, minWidth: 180 }}>
+        <Grid
+          item
+          xs={6}
+          style={{
+            maxWidth: 180,
+            minWidth: 180,
+          }}
+        >
           <Button
+            textOnly={sub}
             selected={home}
-            label="Daniel Kalman"
+            label={sub ? "Back" : "Daniel Kalman"}
             linkTo="/"
             onClick={() => {
               setHome(true);
@@ -75,19 +95,11 @@ export const Header = ({ menu, unit, onChange }: HeaderProps) => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Hidden xsDown>
-            <Slider unit={unit} onChange={onChange} />
-          </Hidden>
+          <Hidden xsDown>{sub ? null : slider}</Hidden>
         </Grid>
       </Grid>
       <Grid item xs={3} sm={4} justify="flex-end">
-        <Menu
-          menu={menu}
-          home={home}
-          onClick={() => {
-            setHome(false);
-          }}
-        />
+        {sub ? null : menuComponent}
       </Grid>
     </Grid>
   );
