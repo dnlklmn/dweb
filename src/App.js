@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { Picture } from "./Picture";
 import React from "react";
 import { Gallery } from "./Gallery";
+import { Button } from "./Button";
 import { makeStyles, ThemeProvider, Typography } from "@material-ui/core";
 import { themeOne as theme } from "./theme";
 
@@ -49,7 +50,7 @@ function App() {
             <Route exact path="/">
               <Grid item xs={12} sm={10} container justify="center" spacing={6}>
                 <Grid item xs={12} className={classes.items}>
-                  <Picture borderAlwaysOn bgImg="dk.jpg" />
+                  <Picture borderAlwaysOn bgImg="dk.jpg" unit={unit} />
                 </Grid>
                 <Grid
                   item
@@ -69,7 +70,7 @@ function App() {
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Typography variant="button">GET IN TOUCH {">"}</Typography>
+                    <Button label="GET IN TOUCH >" textOnly linkTo="/contact" />
                   </Grid>
                 </Grid>
               </Grid>

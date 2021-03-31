@@ -9,6 +9,7 @@ interface SliderProps {
 const useStyles = makeStyles({
   slider: {
     margin: "0 24px",
+    maxWidth: 320,
     "& .MuiSlider-rail": {
       height: 10,
       background: theme.palette.grey3.main,

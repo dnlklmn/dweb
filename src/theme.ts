@@ -41,7 +41,7 @@ export const themeOne = createMuiTheme({
 
     background: { paper: "#fff", default: "#fafafa" },
 
-    text: { primary: "#303030", secondary: "#7A7A7A" },
+    text: { primary: "#551A8B", secondary: "#7A7A7A" },
 
     warning: { main: "#DDDB00", contrastText: "#303030" },
 
@@ -77,7 +77,10 @@ export const themeOne = createMuiTheme({
     subtitle2: { fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 },
 
     // body
-    body1: { fontSize: "1rem", lineHeight: 1.4 },
+    body1: {
+      fontSize: "1rem",
+      lineHeight: 1.4,
+    },
     body2: { fontSize: "0.75rem", lineHeight: 1.4 },
 
     // other

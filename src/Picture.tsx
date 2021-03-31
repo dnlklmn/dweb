@@ -1,4 +1,4 @@
-import { ThemeProvider, Typography } from "@material-ui/core";
+import { makeStyles, ThemeProvider, Typography } from "@material-ui/core";
 import React from "react";
 import { themeOne as theme } from "./theme";
 
@@ -55,6 +55,7 @@ export const Picture = ({
               color: "#fff",
               verticalAlign: "top",
               float: "left",
+              zIndex: 100,
             }}
           >
             <Typography variant="subtitle2">

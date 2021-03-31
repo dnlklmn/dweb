@@ -33,15 +33,15 @@ const useStyles = makeStyles({
       boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
     },
     "&.textOnly": {
-      padding: "16px 0",
+      padding: 0,
+      margin: 0,
       boxShadow: `inset 0 0 0 0px ${theme.palette.primary.main}`,
     },
     //next up
     "&.textOnly :hover": {
-      padding: "16px 0",
       boxShadow: `inset 0 0 0 0px ${theme.palette.primary.main}`,
       background: "none",
-      color: theme.palette.primary.main,
+      color: "#fff",
     },
     "&:hover": {
       background: theme.palette.primary.main,
