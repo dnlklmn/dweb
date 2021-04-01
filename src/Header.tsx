@@ -55,10 +55,13 @@ export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
   const classes = useStyles();
 
   const [home, setHome] = React.useState(true);
+  const [currentNav, setCurrentNav] = React.useState("Home");
 
   const slider = <Slider unit={unit} onChange={onChange} />;
   const menuComponent = (
     <Menu
+      setNav={(item: string) => setCurrentNav(item)}
+      currentNav={currentNav}
       menu={menu}
       home={home}
       onClick={() => {
@@ -75,7 +78,7 @@ export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
       justify="space-between"
       alignItems="center"
     >
-      <Grid container item xs={8} alignItems="center">
+      <Grid container justify="flex-start" item xs={8} alignItems="center">
         <Grid
           item
           xs={6}
@@ -87,7 +90,7 @@ export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
           <Button
             textOnly={sub}
             selected={home}
-            withIcon={sub}
+            iconBefore={sub}
             label={sub ? "Back" : "Daniel Kalman"}
             linkTo={sub ? "/works" : "/"}
             onClick={() => {

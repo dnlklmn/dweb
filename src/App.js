@@ -71,6 +71,7 @@ function App() {
                   xs={12}
                   alignContent="center"
                   container
+                  justify="flex-start"
                   spacing={2}
                   className={classes.items}
                 >
@@ -100,9 +101,9 @@ function App() {
                 <span>Contact</span>
               </Route>
             </Switch>
-            {projects.map((item) => {
+            {projects.map((item, index) => {
               return (
-                <Route exact path={`/works/${item.url}`}>
+                <Route exact path={`/works/${item.url}`} key={index * 0.8}>
                   <Grid item xs={12}>
                     <Header sub />
                   </Grid>

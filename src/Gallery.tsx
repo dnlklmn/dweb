@@ -27,43 +27,41 @@ export const Gallery = ({ unit, projects }: GalleryProps) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Grid
-        container
-        xs={12}
-        lg={10}
-        spacing={6}
-        justify="center"
-        className={classes.mainGrid}
-      >
-        {projects.map((item, index) => {
-          return (
-            <Grid
-              item
-              xs={12}
-              sm={8}
-              lg={5}
-              className={classes.galleryItems}
-              style={{
-                paddingTop: 12 + Math.random() * unit * 5,
-                paddingLeft: 12 + Math.random() * unit * 12,
-                paddingRight: 12 + Math.random() * unit * 12,
-                paddingBottom: 12 + Math.random() * unit * 5,
-                transition: "all 0.23s ease-in-out",
-              }}
-            >
-              <Link to={`/works/${item.url}`}>
-                <Picture
-                  overlayOn
-                  bgImg={item.cover}
-                  title={item.title}
-                  unit={unit}
-                />
-              </Link>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </div>
+    <Grid
+      container
+      xs={12}
+      lg={10}
+      spacing={6}
+      justify="center"
+      className={classes.mainGrid}
+      style={{ paddingTop: 24 }}
+    >
+      {projects.map((item, index) => {
+        return (
+          <Grid
+            item
+            xs={11}
+            lg={5}
+            className={classes.galleryItems}
+            style={{
+              paddingTop: 12 + Math.random() * unit * 5,
+              paddingLeft: 12 + Math.random() * unit * 12,
+              paddingRight: 12 + Math.random() * unit * 12,
+              paddingBottom: 12 + Math.random() * unit * 5,
+              transition: "all 0.23s ease-in-out",
+            }}
+          >
+            <Link to={`/works/${item.url}`}>
+              <Picture
+                overlayOn
+                bgImg={item.cover}
+                title={item.title}
+                unit={unit}
+              />
+            </Link>
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 };

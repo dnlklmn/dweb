@@ -42,7 +42,6 @@ export const Picture = ({
             minHeight: 300,
             backgroundImage: `url(./Assets/${bgImg})`,
             backgroundSize: "cover",
-            display: "block",
             float: "right",
             // borderRadius: 20 / unit,
             // boxShadow: `0 ${unit * 5}px ${unit * 5}px rgba(0,0,0,0.1)`,
@@ -63,6 +62,7 @@ export const Picture = ({
               verticalAlign: "top",
               float: "left",
               zIndex: 100,
+              transition: "all 0.5s ease",
             }}
           >
             <Typography variant="subtitle2">

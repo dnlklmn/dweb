@@ -6,11 +6,12 @@ import FeatherIcon from "feather-icons-react";
 interface ButtonProps {
   home?: boolean;
   onClick?: any;
-  label?: string;
+  label: string;
   linkTo?: string;
   selected?: boolean;
   textOnly?: boolean;
-  withIcon?: boolean;
+  iconBefore?: boolean;
+  iconAfter?: boolean;
 }
 
 const useStyles = makeStyles({
@@ -22,13 +23,13 @@ const useStyles = makeStyles({
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
     padding: 16,
     gap: "1rem",
     outline: 0,
     border: 0,
     textDecoration: "none",
+    justifyContent: "flex-start",
     margin: "0 4px",
     color: theme.palette.secondary.main,
 
@@ -53,13 +54,13 @@ const useStyles = makeStyles({
   },
 });
 export const Button = ({
-  home,
   onClick,
   label,
   linkTo,
   selected,
   textOnly,
-  withIcon,
+  iconBefore,
+  iconAfter,
 }: ButtonProps) => {
   const classes = useStyles();
 
@@ -67,6 +68,18 @@ export const Button = ({
     <div style={{ flexShrink: 0 }}>
       <FeatherIcon size={18} icon="arrow-left" />
     </div>
+  );
+
+  const menuIcon = (
+    <div style={{ flexShrink: 0 }}>
+      <FeatherIcon size={18} icon="menu" />
+    </div>
+  );
+
+  const btnLabel = (
+    <Typography variant="button" style={{ flexShrink: 0 }}>
+      {label ? label : "MENU"}
+    </Typography>
   );
 
   return (
@@ -77,8 +90,9 @@ export const Button = ({
       } `}
       onClick={onClick}
     >
-      {withIcon ? backIcon : null}
-      <Typography variant="button">{label}</Typography>
+      {iconBefore ? backIcon : null}
+      {label.length > 1 ? btnLabel : null}
+      {iconAfter ? menuIcon : null}
     </Link>
   );
 };
