@@ -44,6 +44,9 @@ export const Picture = ({
             backgroundSize: "cover",
             display: "block",
             float: "right",
+            // borderRadius: 20 / unit,
+            // boxShadow: `0 ${unit * 5}px ${unit * 5}px rgba(0,0,0,0.1)`,
+            transition: "all 0.5s ease",
           }}
         >
           <div
@@ -79,6 +82,7 @@ export const Picture = ({
             top: 8 + unit * 2,
             left: 8 + unit * 2,
             transition: "all 0.5s ease",
+            // borderRadius: 20 / unit,
           }}
         ></div>
       </div>

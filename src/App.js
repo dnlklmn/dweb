@@ -7,6 +7,18 @@ import { Gallery } from "./Gallery";
 import { Button } from "./Button";
 import { makeStyles, ThemeProvider, Typography } from "@material-ui/core";
 import { themeOne as theme } from "./theme";
+import { SubPage } from "./SubPage";
+
+const projects = [
+  {
+    title: "Satoshipay Micropayments",
+    url: "satoshipay-micro",
+    cover: "cactus.png",
+  },
+  { title: "Solar Wallet", url: "solar-wallet", cover: "laspalmas.png" },
+  { title: "Quarters Design System", url: "quarters", cover: "tenerife.png" },
+  { title: "Fourth Project", url: "four", cover: "beach.png" },
+];
 
 const useStyles = makeStyles({
   mainGrid: {
@@ -79,7 +91,7 @@ function App() {
             </Route>
             <Switch>
               <Route exact path="/works">
-                <Gallery unit={unit} />
+                <Gallery unit={unit} projects={projects} />
               </Route>
               <Route path="/blog">
                 <span>Blog</span>
@@ -88,11 +100,16 @@ function App() {
                 <span>Contact</span>
               </Route>
             </Switch>
-            <Route exact path="/works/satoshipay-micro">
-              <Grid item xs={12}>
-                <Header menu={menu} unit={unit} onChange={handleChange} sub />
-              </Grid>
-            </Route>
+            {projects.map((item) => {
+              return (
+                <Route exact path={`/works/${item.url}`}>
+                  <Grid item xs={12}>
+                    <Header sub />
+                  </Grid>
+                  <SubPage title={item.title} />;
+                </Route>
+              );
+            })}
           </Grid>
         </Router>
       </ThemeProvider>

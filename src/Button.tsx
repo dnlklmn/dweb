@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { themeOne as theme } from "./theme";
 import { makeStyles, Typography } from "@material-ui/core";
+import FeatherIcon from "feather-icons-react";
 
 interface ButtonProps {
   home?: boolean;
@@ -9,6 +10,7 @@ interface ButtonProps {
   linkTo?: string;
   selected?: boolean;
   textOnly?: boolean;
+  withIcon?: boolean;
 }
 
 const useStyles = makeStyles({
@@ -23,6 +25,7 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
+    gap: "1rem",
     outline: 0,
     border: 0,
     textDecoration: "none",
@@ -56,8 +59,15 @@ export const Button = ({
   linkTo,
   selected,
   textOnly,
+  withIcon,
 }: ButtonProps) => {
   const classes = useStyles();
+
+  const backIcon = (
+    <div style={{ flexShrink: 0 }}>
+      <FeatherIcon size={18} icon="arrow-left" />
+    </div>
+  );
 
   return (
     <Link
@@ -67,6 +77,7 @@ export const Button = ({
       } `}
       onClick={onClick}
     >
+      {withIcon ? backIcon : null}
       <Typography variant="button">{label}</Typography>
     </Link>
   );

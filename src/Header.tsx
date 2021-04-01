@@ -87,8 +87,9 @@ export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
           <Button
             textOnly={sub}
             selected={home}
+            withIcon={sub}
             label={sub ? "Back" : "Daniel Kalman"}
-            linkTo="/"
+            linkTo={sub ? "/works" : "/"}
             onClick={() => {
               setHome(true);
             }}

@@ -9,13 +9,17 @@ interface SliderProps {
 const useStyles = makeStyles({
   slider: {
     margin: "0 24px",
-    maxWidth: 320,
+    maxWidth: 180,
     "& .MuiSlider-rail": {
       height: 10,
+      marginTop: -3,
+
       background: theme.palette.grey3.main,
     },
     "& .MuiSlider-track": {
       height: 10,
+      marginTop: -3,
+
       paddingRight: 5,
       transition: "all 0.1s ease",
     },
@@ -23,7 +27,7 @@ const useStyles = makeStyles({
       height: 20,
       width: 20,
       marginLeft: -10,
-      marginTop: -5,
+      marginTop: -8,
       borderRadius: 0,
       background: "#fff",
       boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
@@ -31,7 +35,6 @@ const useStyles = makeStyles({
         height: 20,
         width: 20,
         marginLeft: -10,
-        marginTop: -5,
         boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
         background: theme.palette.primary.main,
       },

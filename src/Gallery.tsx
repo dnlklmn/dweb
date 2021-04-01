@@ -7,18 +7,8 @@ import { Link } from "react-router-dom";
 // const unit = Number(Unit);
 interface GalleryProps {
   unit: number;
+  projects: [{ title: string; url: string; cover: string }];
 }
-
-const projects = [
-  {
-    title: "Satoshipay Micropayments",
-    url: "satoshipay-micro",
-    cover: "cactus.png",
-  },
-  { title: "Solar Wallet", url: "solar-wallet", cover: "laspalmas.png" },
-  { title: "Quarters Design System", url: "quarters", cover: "tenerife.png" },
-  { title: "Fourth Project", url: "four", cover: "beach.png" },
-];
 
 const useStyles = makeStyles({
   mainGrid: {
@@ -33,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Gallery = ({ unit }: GalleryProps) => {
+export const Gallery = ({ unit, projects }: GalleryProps) => {
   const classes = useStyles();
 
   return (
@@ -56,8 +46,8 @@ export const Gallery = ({ unit }: GalleryProps) => {
               className={classes.galleryItems}
               style={{
                 paddingTop: 12 + Math.random() * unit * 5,
-                paddingLeft: 12 + Math.random() * unit * 10,
-                paddingRight: 12 + Math.random() * unit * 10,
+                paddingLeft: 12 + Math.random() * unit * 12,
+                paddingRight: 12 + Math.random() * unit * 12,
                 paddingBottom: 12 + Math.random() * unit * 5,
                 transition: "all 0.23s ease-in-out",
               }}
