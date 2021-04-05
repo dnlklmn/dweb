@@ -1,4 +1,3 @@
-import React from "react";
 import Hidden from "@material-ui/core/Hidden";
 import Grid from "@material-ui/core/Grid";
 import { Button } from "./Button";

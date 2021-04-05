@@ -1,5 +1,5 @@
 import { Slider as MUISlider, makeStyles } from "@material-ui/core";
-import { themeOne as theme } from "./theme";
+import { darkTheme } from "./theme";
 
 interface SliderProps {
   unit: number;
@@ -12,13 +12,12 @@ const useStyles = makeStyles({
     maxWidth: 180,
     "& .MuiSlider-rail": {
       height: 10,
-      marginTop: -3,
-
-      background: theme.palette.grey3.main,
+      marginTop: 0,
+      background: darkTheme.palette.grey3.main,
     },
     "& .MuiSlider-track": {
       height: 10,
-      marginTop: -3,
+      marginTop: 0,
 
       paddingRight: 5,
       transition: "all 0.1s ease",
@@ -27,23 +26,17 @@ const useStyles = makeStyles({
       height: 20,
       width: 20,
       marginLeft: -10,
-      marginTop: -8,
+      marginTop: -5,
       borderRadius: 0,
       background: "#fff",
-      boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
+      boxShadow: `inset 0 0 0 3px ${darkTheme.palette.primary.main}`,
       " &:hover, &:active": {
         height: 20,
         width: 20,
         marginLeft: -10,
-        boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
-        background: theme.palette.primary.main,
+        boxShadow: `inset 0 0 0 3px ${darkTheme.palette.primary.main}`,
+        background: darkTheme.palette.primary.main,
       },
-    },
-    "& .MuiSlider-mark": {
-      height: 10,
-      width: 2,
-      marginTop: -3,
-      background: "#ffffff50",
     },
   },
 });
@@ -57,7 +50,6 @@ export const Slider = ({ unit, onChange }: SliderProps) => {
       onChange={onChange}
       className={classes.slider}
       step={2}
-      marks
       min={0}
       max={10}
     />

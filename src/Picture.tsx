@@ -1,6 +1,6 @@
-import { ThemeProvider, Typography } from "@material-ui/core";
+import { Hidden, Typography } from "@material-ui/core";
 import React from "react";
-import { themeOne as theme } from "./theme";
+import { darkTheme } from "./theme";
 
 interface PictureProps {
   bgImg?: string;
@@ -8,7 +8,7 @@ interface PictureProps {
   overlayOn?: boolean;
   title?: string;
   subtitle?: string;
-  unit: number;
+  unit?: number;
 }
 
 export const Picture = ({
@@ -21,43 +21,39 @@ export const Picture = ({
   const [showBorder, setShowBorder] = React.useState("none");
 
   return (
-    <ThemeProvider theme={theme}>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
-        }}
-        onMouseOver={() => {
-          setShowBorder("block");
-        }}
-        onMouseOut={() => {
-          setShowBorder("none");
-        }}
-      >
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+      }}
+      onMouseOver={() => {
+        setShowBorder("block");
+      }}
+      onMouseOut={() => {
+        setShowBorder("none");
+      }}
+    >
+      <Hidden smUp>
         <div
           style={{
             width: "100%",
             position: "relative",
-            minHeight: 300,
+            height: "100%",
             backgroundImage: `url(./Assets/${bgImg})`,
             backgroundSize: "cover",
             float: "right",
-            // borderRadius: 20 / unit,
-            // boxShadow: `0 ${unit * 5}px ${unit * 5}px rgba(0,0,0,0.1)`,
             transition: "all 0.5s ease",
           }}
         >
           <div
             style={{
-              display: borderAlwaysOn ? "none" : showBorder,
-              backgroundColor: "#FF13EA",
+              backgroundColor: darkTheme.palette.primary.main,
               maxWidth: "85%",
-              top: 24 + unit * 2,
-              left: 32 + unit * -7,
-              padding: 8 + unit * 2,
+              top: unit ? 24 + unit * 2 : 24,
+              left: unit ? 32 + unit * -7 : 32,
+              padding: unit ? 8 + unit * 2 : 8,
               position: "relative",
-              height: "100%",
               color: "#fff",
               verticalAlign: "top",
               float: "left",
@@ -72,20 +68,71 @@ export const Picture = ({
             </Typography>
           </div>
         </div>
+      </Hidden>
+      <Hidden xsDown>
+        <div
+          style={{
+            width: "100%",
+            position: "relative",
+            height: "100%",
+            backgroundImage: `url(./Assets/${bgImg})`,
+            backgroundSize: "cover",
+            float: "right",
+            transition: "all 0.5s ease",
+          }}
+        >
+          <div
+            style={{
+              display: borderAlwaysOn ? "none" : showBorder,
+              backgroundColor: darkTheme.palette.primary.main,
+              maxWidth: "85%",
+              top: unit ? 24 + unit * 2 : 24,
+              left: unit ? 32 + unit * -7 : 32,
+              padding: unit ? 8 + unit * 2 : 8,
+              position: "relative",
+              color: "#fff",
+              verticalAlign: "top",
+              float: "left",
+              zIndex: 100,
+              transition: "all 0.5s ease",
+            }}
+          >
+            <Typography variant="subtitle2">
+              {title}
+              <br />
+              {subtitle}
+            </Typography>
+          </div>
+        </div>
+      </Hidden>
+
+      <Hidden smUp>
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            boxShadow: `inset 0 0 0 3px ${darkTheme.palette.primary.main}`,
+            position: "relative",
+            top: unit ? 8 + unit * 2 : 8,
+            left: unit ? 8 + unit * 2 : 8,
+            transition: "all 0.5s ease",
+          }}
+        ></div>
+      </Hidden>
+      <Hidden xsDown>
         <div
           style={{
             display: borderAlwaysOn ? "block" : showBorder,
             height: "100%",
             width: "100%",
-            boxShadow: "inset 0 0 0 3px #FF13EA",
+            boxShadow: `inset 0 0 0 3px ${darkTheme.palette.primary.main}`,
             position: "relative",
-            top: 8 + unit * 2,
-            left: 8 + unit * 2,
+            top: unit ? 8 + unit * 2 : 8,
+            left: unit ? 8 + unit * 2 : 8,
             transition: "all 0.5s ease",
-            // borderRadius: 20 / unit,
           }}
         ></div>
-      </div>
-    </ThemeProvider>
+      </Hidden>
+    </div>
   );
 };

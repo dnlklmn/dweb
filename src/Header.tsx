@@ -2,56 +2,40 @@ import React from "react";
 import { Hidden, makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import { Menu } from "./Menu";
-import { themeOne as theme } from "./theme";
 import { Button } from "./Button";
 import { Slider } from "./Slider";
+import { Toggle } from "./Toggle";
 
 interface HeaderProps {
   menu: [string];
   unit: number;
   onChange: any;
   sub: boolean;
+  checked: boolean;
+  onChangeToggle: any;
 }
 
 const useStyles = makeStyles({
   headerBg: {
+    position: "sticky",
+    top: 0,
     boxSizing: "border-box",
     padding: 24,
-  },
-  button: {
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
-    background: "none",
-    outline: 0,
-    border: 0,
-    textDecoration: "none",
-    margin: "0 4px",
-
-    "&.selected": {
-      boxShadow: `inset 0 0 0 4px ${theme.palette.primary.main}`,
+    zIndex: 101,
+    "@media (max-width: 600px)": {
+      padding: 12,
     },
-    "&:hover": {
-      background: theme.palette.primary.main,
-      color: "#fff",
-    },
-  },
-  menuItems: {
-    width: "auto",
-    flexShrink: 0,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    overflow: "visible",
-    gap: 24,
   },
 });
 
-export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
+export const Header = ({
+  menu,
+  unit,
+  onChange,
+  sub,
+  checked,
+  onChangeToggle,
+}: HeaderProps) => {
   const classes = useStyles();
 
   const [home, setHome] = React.useState(true);
@@ -70,6 +54,32 @@ export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
     />
   );
 
+  const homeBtn = (
+    <Grid
+      item
+      xs={6}
+      style={{
+        maxWidth: 180,
+        minWidth: 180,
+      }}
+    >
+      <Button
+        selected={home}
+        label="Daniel Kalman"
+        linkTo="/"
+        onClick={() => {
+          setHome(true);
+        }}
+      />
+    </Grid>
+  );
+
+  const toggle = (
+    <Toggle checked={checked} onChange={onChangeToggle} dark={checked} />
+  );
+
+  const backBtn = <Button textOnly iconBefore label="Back" linkTo="/" />;
+
   return (
     <Grid
       xs={12}
@@ -79,27 +89,23 @@ export const Header = ({ menu, unit, onChange, sub }: HeaderProps) => {
       alignItems="center"
     >
       <Grid container justify="flex-start" item xs={8} alignItems="center">
+        {sub ? backBtn : homeBtn}
         <Grid
+          container
           item
           xs={6}
-          style={{
-            maxWidth: 180,
-            minWidth: 180,
-          }}
+          sm={5}
+          justify="space-between"
+          style={{ maxWidth: 300 }}
         >
-          <Button
-            textOnly={sub}
-            selected={home}
-            iconBefore={sub}
-            label={sub ? "Back" : "Daniel Kalman"}
-            linkTo={sub ? "/works" : "/"}
-            onClick={() => {
-              setHome(true);
-            }}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Hidden xsDown>{sub ? null : slider}</Hidden>
+          <Hidden xsDown>
+            <Grid item xs={8}>
+              {sub ? null : slider}
+            </Grid>
+            <Grid item xs={2}>
+              {sub ? null : toggle}
+            </Grid>
+          </Hidden>
         </Grid>
       </Grid>
       <Grid item xs={3} sm={4} justify="flex-end">

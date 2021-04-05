@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { themeOne as theme } from "./theme";
+import { darkTheme } from "./theme";
 import { makeStyles, Typography } from "@material-ui/core";
 import FeatherIcon from "feather-icons-react";
 
@@ -31,24 +31,24 @@ const useStyles = makeStyles({
     textDecoration: "none",
     justifyContent: "flex-start",
     margin: "0 4px",
-    color: theme.palette.secondary.main,
+    color: darkTheme.palette.secondary.main,
 
     "&.selected": {
-      boxShadow: `inset 0 0 0 3px ${theme.palette.primary.main}`,
+      boxShadow: `inset 0 0 0 3px ${darkTheme.palette.primary.main}`,
     },
     "&.textOnly": {
-      padding: "16px 0",
-      margin: 0,
-      boxShadow: `inset 0 0 0 0px ${theme.palette.primary.main}`,
+      padding: "2px 0",
+      margin: "14px 0",
+      boxShadow: `inset 0 0 0 0px ${darkTheme.palette.primary.main}`,
     },
     //next up
     "&.textOnly :hover": {
-      boxShadow: `inset 0 0 0 0px ${theme.palette.primary.main}`,
+      boxShadow: `inset 0 0 0 0px ${darkTheme.palette.primary.main}`,
       background: "none",
       color: "#fff",
     },
     "&:hover": {
-      background: theme.palette.primary.main,
+      background: darkTheme.palette.primary.main,
       color: "#fff",
     },
   },

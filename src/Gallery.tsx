@@ -44,10 +44,11 @@ export const Gallery = ({ unit, projects }: GalleryProps) => {
             lg={5}
             className={classes.galleryItems}
             style={{
-              paddingTop: 12 + Math.random() * unit * 5,
+              height: 320,
+              paddingTop: 12 + Math.random() * unit * 12,
               paddingLeft: 12 + Math.random() * unit * 12,
               paddingRight: 12 + Math.random() * unit * 12,
-              paddingBottom: 12 + Math.random() * unit * 5,
+              paddingBottom: 12 + Math.random() * unit * 12,
               transition: "all 0.23s ease-in-out",
             }}
           >
