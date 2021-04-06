@@ -1,5 +1,7 @@
 import { Grid, Typography } from "@material-ui/core";
 import sp1 from "./sp1.png";
+import paymentLines from "./sp-images/payment-lines.png";
+import horizontalFlow from "./sp-images/horizontal-flow-chart.png";
 
 interface SubPageProps {
   title: string;
@@ -8,64 +10,153 @@ interface SubPageProps {
 
 export const SubPage = ({ title, unit }: SubPageProps) => {
   const spMicro = (
-    <Grid
-      container
-      item
-      xs={12}
-      sm={10}
-      justify="center"
-      spacing={6}
-      alignItems="center"
-      style={{ marginTop: 8 + unit * 3 }}
-    >
-      <Grid container item spacing={2} xs={12} lg={6} alignContent="flex-start">
-        <Grid item>
-          <Typography variant="subtitle1">
-            SatoshiPay is a payment provider operating on the blockchain.
-          </Typography>
+    <div>
+      <Grid container item xs={12} justify="center">
+        {/* intro + flowchart */}
+        <Grid
+          container
+          item
+          xs={12}
+          sm={10}
+          alignItems="center"
+          style={{ marginTop: 8 + unit * 3 }}
+        >
+          <Grid container item spacing={2} xs={12} lg={6}>
+            <Grid item>
+              <Typography variant="subtitle2">
+                SatoshiPay is a payment provider operating on the blockchain.
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body1">
+                Our goal was to verify that people are ready to purchase online
+                content directly from the content provider, instead of
+                supporting them by watching ads.
+              </Typography>
+            </Grid>
+          </Grid>
+          <div style={{ width: unit }} />
+          <Grid item xs={12} lg={6}>
+            <img
+              style={{
+                width: "100%",
+                maxWidth: 480,
+                height: "100%",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              }}
+              src={sp1}
+              alt=""
+            />
+          </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant="body1">
-            Our goal was to verify that people are ready to purchase online
-            content directly from the content provider, instead of supporting
-            them by watching ads. Along the way we figured out It is hard to
-            convince people to pay for digital content, however little you ask
-            for. Let alone having to do the whole thing on the blockchain.
-          </Typography>
+        {/* problem + lines */}
+
+        <Grid container item xs={12} alignItems="center">
+          <Grid item xs={12} style={{ marginTop: 48 + unit * 3 }}>
+            <Typography variant="h4">The Problem</Typography>
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <img
+              style={{
+                width: "100%",
+                maxWidth: 480,
+                height: "100%",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+              }}
+              src={paymentLines}
+              alt=""
+            />
+          </Grid>
+          <div style={{ width: unit }} />
+          <Grid
+            container
+            item
+            spacing={2}
+            xs={12}
+            lg={6}
+            style={{ maxWidth: 620 }}
+          >
+            <Grid item>
+              <Typography variant="body1">
+                The micropayment service worked, but it lacked a clean and user
+                friendly interface. Our first clients deserve a smoother
+                experience. <br />
+                <br />
+                Would you pay 1?
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          item
+          xs={12}
+          sm={10}
+          justify="flex-start"
+          spacing={6}
+          alignItems="center"
+          style={{ marginTop: 24 + unit * 3 }}
+        >
+          <Grid
+            container
+            item
+            spacing={2}
+            xs={12}
+            lg={6}
+            alignContent="flex-start"
+          >
+            <Grid item>
+              <Typography variant="subtitle2">Goals</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1" style={{ lineHeight: 2 }}>
+                1. Make purchasing a product easy <br /> 2. Build trust {"&"}{" "}
+                secure funds <br />
+                3. Make device independent
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            item
+            spacing={2}
+            xs={12}
+            lg={6}
+            alignContent="flex-start"
+          >
+            <Grid item>
+              <Typography variant="subtitle2">Challenges</Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" style={{ lineHeight: 2 }}>
+                1. Our widgets live on others' websites
+                <br /> 2. A new and unfamiliar way of spending money <br /> 3.
+                Cumbersome security process
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
-      <div style={{ width: unit }} />
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12}>
         <img
           style={{
             width: "100%",
-            maxWidth: 480,
             height: "100%",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
           }}
-          src={sp1}
+          src={horizontalFlow}
           alt=""
         />
       </Grid>
-    </Grid>
+    </div>
   );
 
   return (
-    <Grid
-      container
-      item
-      alignItems="center"
-      justify="center"
-      spacing={7}
-      xs={12}
-      style={{ height: 180 }}
-    >
+    <Grid container xs={12} style={{ padding: 0, margin: 0 }}>
       <Grid item xs={12} md={10}>
         <Typography variant="h3">{title}</Typography>
       </Grid>
-      <Grid item xs={12} md={10} lg={10} justify="center">
-        {spMicro}
-      </Grid>
+      {spMicro}
     </Grid>
   );
 };

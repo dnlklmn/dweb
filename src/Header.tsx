@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import { Menu } from "./Menu";
 import { Button } from "./Button";
 import { Slider } from "./Slider";
-import { Toggle } from "./Toggle";
 
 interface HeaderProps {
   menu: [string];
@@ -17,14 +16,27 @@ interface HeaderProps {
 
 const useStyles = makeStyles({
   headerBg: {
-    position: "sticky",
-    top: 0,
+    width: "100%",
     boxSizing: "border-box",
-    padding: 24,
+    flexShrink: 0,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    transition: "all 0.23s ease",
+    padding: ({ unit }: { unit: number }) => 24 + unit,
     zIndex: 101,
     "@media (max-width: 600px)": {
-      padding: 12,
+      padding: ({ unit }: { unit: number }) => 16 + unit,
     },
+  },
+  flexBoxLeft: {
+    flexShrink: 1,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    alignContent: "center",
+    gap: ({ unit }: { unit: number }) => 16 + unit * 2,
   },
 });
 
@@ -36,7 +48,7 @@ export const Header = ({
   checked,
   onChangeToggle,
 }: HeaderProps) => {
-  const classes = useStyles();
+  const classes = useStyles({ unit });
 
   const [home, setHome] = React.useState(true);
   const [currentNav, setCurrentNav] = React.useState("Home");
@@ -53,11 +65,8 @@ export const Header = ({
       }}
     />
   );
-
   const homeBtn = (
-    <Grid
-      item
-      xs={6}
+    <div
       style={{
         maxWidth: 180,
         minWidth: 180,
@@ -71,46 +80,28 @@ export const Header = ({
           setHome(true);
         }}
       />
-    </Grid>
-  );
-
-  const toggle = (
-    <Toggle checked={checked} onChange={onChangeToggle} dark={checked} />
+    </div>
   );
 
   const backBtn = <Button textOnly iconBefore label="Back" linkTo="/" />;
 
   return (
-    <Grid
-      xs={12}
-      className={classes.headerBg}
-      container
-      justify="space-between"
-      alignItems="center"
-    >
-      <Grid container justify="flex-start" item xs={8} alignItems="center">
+    <div className={classes.headerBg}>
+      <div className={classes.flexBoxLeft}>
         {sub ? backBtn : homeBtn}
-        <Grid
-          container
-          item
-          xs={6}
-          sm={5}
-          justify="space-between"
-          style={{ maxWidth: 300 }}
-        >
-          <Hidden xsDown>
-            <Grid item xs={8}>
-              {sub ? null : slider}
-            </Grid>
-            <Grid item xs={2}>
-              {sub ? null : toggle}
-            </Grid>
-          </Hidden>
-        </Grid>
-      </Grid>
+        <Hidden xsDown>
+          <div>{sub ? null : slider}</div>
+          <Button
+            label={checked ? "make light" : "make dark"}
+            onClick={onChangeToggle}
+            textOnly
+          />
+        </Hidden>
+      </div>
+      {/* remove grid from here */}
       <Grid item xs={3} sm={4} justify="flex-end">
         {sub ? null : menuComponent}
       </Grid>
-    </Grid>
+    </div>
   );
 };

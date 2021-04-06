@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     "& .MuiSwitch-track": {
       height: 10,
       opacity: 1,
-      marginTop: 0,
       background: darkTheme.palette.grey3.main,
       transition: "all 0.1s ease",
       borderRadius: 0,

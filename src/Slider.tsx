@@ -8,16 +8,14 @@ interface SliderProps {
 
 const useStyles = makeStyles({
   slider: {
-    margin: "0 24px",
-    maxWidth: 180,
+    margin: "0 0px 6px 0px",
+    width: 180,
     "& .MuiSlider-rail": {
       height: 10,
-      marginTop: 0,
       background: darkTheme.palette.grey3.main,
     },
     "& .MuiSlider-track": {
       height: 10,
-      marginTop: 0,
 
       paddingRight: 5,
       transition: "all 0.1s ease",
@@ -26,7 +24,6 @@ const useStyles = makeStyles({
       height: 20,
       width: 20,
       marginLeft: -10,
-      marginTop: -5,
       borderRadius: 0,
       background: "#fff",
       boxShadow: `inset 0 0 0 3px ${darkTheme.palette.primary.main}`,
