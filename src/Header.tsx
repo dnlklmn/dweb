@@ -12,6 +12,7 @@ interface HeaderProps {
   sub: boolean;
   checked: boolean;
   onChangeToggle: any;
+  dark?: boolean;
 }
 
 const useStyles = makeStyles({
@@ -23,10 +24,11 @@ const useStyles = makeStyles({
     flexDirection: "row",
     justifyContent: "space-between",
     transition: "all 0.23s ease",
-    padding: ({ unit }: { unit: number }) => 24 + unit,
+    transitionDelay: ".23s",
+    padding: ({ unit }: { unit: number }) => `24px ${24 + unit}px`,
     zIndex: 101,
     "@media (max-width: 600px)": {
-      padding: ({ unit }: { unit: number }) => 16 + unit,
+      padding: ({ unit }: { unit: number }) => `16px ${16 + unit}px`,
     },
   },
   flexBoxLeft: {
@@ -36,6 +38,8 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     alignContent: "center",
+    transition: "all 0.23s ease",
+    transitionDelay: ".23s",
     gap: ({ unit }: { unit: number }) => 16 + unit * 2,
   },
 });
@@ -47,6 +51,7 @@ export const Header = ({
   sub,
   checked,
   onChangeToggle,
+  dark,
 }: HeaderProps) => {
   const classes = useStyles({ unit });
 
@@ -56,6 +61,7 @@ export const Header = ({
   const slider = <Slider unit={unit} onChange={onChange} />;
   const menuComponent = (
     <Menu
+      dark={dark}
       setNav={(item: string) => setCurrentNav(item)}
       currentNav={currentNav}
       menu={menu}
@@ -73,6 +79,7 @@ export const Header = ({
       }}
     >
       <Button
+        dark={dark}
         selected={home}
         label="Daniel Kalman"
         linkTo="/"
@@ -83,19 +90,26 @@ export const Header = ({
     </div>
   );
 
-  const backBtn = <Button textOnly iconBefore label="Back" linkTo="/" />;
+  const darkSwitch = (
+    <Button
+      dark={dark}
+      label={checked ? "lights on" : "lights out"}
+      onClick={onChangeToggle}
+      textOnly
+    />
+  );
+
+  const backBtn = (
+    <Button dark={dark} textOnly iconBefore label="Back" linkTo="/" />
+  );
 
   return (
     <div className={classes.headerBg}>
       <div className={classes.flexBoxLeft}>
         {sub ? backBtn : homeBtn}
         <Hidden xsDown>
-          <div>{sub ? null : slider}</div>
-          <Button
-            label={checked ? "make light" : "make dark"}
-            onClick={onChangeToggle}
-            textOnly
-          />
+          {sub ? null : slider}
+          {sub ? null : darkSwitch}
         </Hidden>
       </div>
       {/* remove grid from here */}

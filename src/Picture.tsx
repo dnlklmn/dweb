@@ -115,7 +115,7 @@ export const Picture = ({
             position: "relative",
             top: unit ? 8 + unit * 2 : 8,
             left: unit ? 8 + unit * 2 : 8,
-            transition: "all 0.5s ease",
+            transition: "all 0.23s ease",
           }}
         ></div>
       </Hidden>
@@ -129,7 +129,7 @@ export const Picture = ({
             position: "relative",
             top: unit ? 8 + unit * 2 : 8,
             left: unit ? 8 + unit * 2 : 8,
-            transition: "all 0.5s ease",
+            transition: "all 0.23s ease",
           }}
         ></div>
       </Hidden>

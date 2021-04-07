@@ -101,7 +101,7 @@ export const darkTheme = {
     success: { main: "#89AA36", contrastText: "#fff" },
     white: { main: "#fff", contrastText: "#303030" },
 
-    text: { primary: "#f3f3f3", secondary: "#7A7A7A" },
+    text: { primary: "#f3f3f3", secondary: "#000" },
     background: { default: "#0f0f0f" },
     warning: { main: "#DDDB00", contrastText: "#303030" },
 

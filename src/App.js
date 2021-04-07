@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import { lightTheme, darkTheme } from "./theme";
 import { SubPage } from "./SubPage";
+import { Box } from "./Box";
+import ThemeContext from "./ThemeContext";
 
 const projects = [
   { title: "Quarters Design System", url: "quarters", cover: "tenerife.png" },
@@ -26,6 +28,16 @@ const projects = [
 ];
 
 const useStyles = makeStyles({
+  main: {
+    width: "66%",
+    margin: "0 auto",
+    "@media (max-width: 960px)": {
+      width: "80%",
+    },
+    "@media (max-width: 600px)": {
+      width: "100%",
+    },
+  },
   header: {
     flexShrink: 1,
     padding: `${(unit) => unit + 32}px 0`,
@@ -47,6 +59,8 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     gap: (unit) => 48 + unit * 3,
+    transitionDelay: "0.23s",
+    transition: "all 0.23s ease",
     "@media (max-width: 960px)": {
       flexDirection: "column",
       width: "66%",
@@ -95,10 +109,8 @@ function App() {
     setUnit(newValue);
   };
 
-  console.log(dark);
-
   return (
-    <div style={{ position: "relative" }}>
+    <ThemeContext.Provider value={unit}>
       <ThemeProvider theme={appliedTheme}>
         <CssBaseline />
         <style>
@@ -119,6 +131,7 @@ function App() {
             <Route exact path={["/", "/about", "/contact", "/blog"]}>
               <div className={classes.header}>
                 <Header
+                  dark={dark}
                   menu={menu}
                   unit={unit}
                   onChange={handleChange}
@@ -129,7 +142,6 @@ function App() {
                 />
               </div>
             </Route>
-
             <Route exact path="/">
               <div
                 style={{
@@ -151,21 +163,27 @@ function App() {
               </div>
               <Gallery unit={unit} projects={projects} />
             </Route>
+
             <Switch>
               <Route exact path="/about">
-                <div className={classes.flexBoxHorizontalCenter}>
+                <Box width="66%" align="center" unit={unit}>
                   <div className={classes.pictureFlex}>
                     <Picture borderAlwaysOn bgImg="dk.jpg" unit={unit} />
                   </div>
-                  <div className={classes.flexBoxVerticalLeft}>
+                  <Box vertical unit={unit}>
                     <Typography variant="body1" style={{ maxWidth: 420 }}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Maecenas nibh velit, auctor sed interdum non, sollicitudin
                       non mi.
                     </Typography>
-                    <Button label="GET IN TOUCH >" textOnly linkTo="/contact" />
-                  </div>
-                </div>
+                    <Button
+                      dark={dark}
+                      label="GET IN TOUCH >"
+                      textOnly
+                      linkTo="/contact"
+                    />
+                  </Box>
+                </Box>
               </Route>
               <Route path="/blog">
                 <span>Blog</span>
@@ -178,16 +196,27 @@ function App() {
               return (
                 <Route exact path={`/works/${item.url}`} key={index * 0.8}>
                   <div className={classes.header}>
-                    <Header sub />
+                    <Header
+                      sub
+                      dark={dark}
+                      unit={unit}
+                      onChange={handleChange}
+                      checked={dark}
+                      onChangeToggle={() => {
+                        setDark(!dark);
+                      }}
+                    />
                   </div>
-                  <SubPage title={item.title} unit={unit} />;
+                  <div className={classes.main}>
+                    <SubPage title={item.title} unit={unit} />;
+                  </div>
                 </Route>
               );
             })}
           </div>
         </Router>
       </ThemeProvider>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

@@ -9,6 +9,7 @@ interface MenuProps {
   onClick: any;
   currentNav: string;
   setNav: any;
+  dark?: boolean;
 }
 
 export const Menu = ({
@@ -17,6 +18,7 @@ export const Menu = ({
   onClick,
   currentNav,
   setNav,
+  dark,
 }: MenuProps) => {
   return (
     <Grid container justify="flex-end" xs={12}>
@@ -31,6 +33,7 @@ export const Menu = ({
         >
           {menu.map((item) => (
             <Button
+              dark={dark}
               label={item}
               linkTo={`/${item.toLowerCase()}`}
               selected={currentNav === item && !home ? true : false}
