@@ -1,7 +1,5 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
-import sp1 from "./sp1.png";
 import paymentLines from "./sp-images/payment-lines.png";
-import horizontalFlow from "./sp-images/horizontal-flow-chart.png";
 import { Box } from "./Box";
 
 interface SubPageProps {
