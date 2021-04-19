@@ -26,14 +26,14 @@ const useStyles = makeStyles({
     "@media (max-width: 960px)": {
       flexDirection: ({ vertical }: BoxProps) =>
         vertical ? "column" : "column",
-      width: ({ width }: BoxProps) => "95%",
+      width: ({ width }: BoxProps) => "100%",
       alignItems: () => "flex-start",
       justify: () => "center",
       padding: ({ padding }: BoxProps) => (padding ? (padding / 3) * 2 : 0),
     },
     "@media (max-width: 600px)": {
       padding: ({ unit, padding }: BoxProps) => padding,
-      width: () => "95%",
+      width: () => "100%",
     },
   },
 });

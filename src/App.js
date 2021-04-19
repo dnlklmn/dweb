@@ -29,7 +29,7 @@ const projects = [
 
 const useStyles = makeStyles({
   main: {
-    width: "66%",
+    width: "100%",
     margin: "0 auto",
     "@media (max-width: 960px)": {
       width: "80%",
@@ -158,7 +158,8 @@ function App() {
                   variant="h3"
                   style={{ lineHeight: 1.4 + unit * 0.03, width: "66%" }}
                 >
-                  I design experiences and design systems to support them.
+                  I design experiences and create design systems that support
+                  them.
                 </Typography>
               </div>
               <Gallery unit={unit} projects={projects} />
@@ -166,7 +167,13 @@ function App() {
 
             <Switch>
               <Route exact path="/about">
-                <Box width="66%" align="center" unit={unit}>
+                <Box
+                  width="66%"
+                  align="center"
+                  unit={unit}
+                  gap={48}
+                  justify="center"
+                >
                   <div className={classes.pictureFlex}>
                     <Picture borderAlwaysOn bgImg="dk.jpg" unit={unit} />
                   </div>
@@ -207,9 +214,7 @@ function App() {
                       }}
                     />
                   </div>
-                  <div className={classes.main}>
-                    <SubPage title={item.title} unit={unit} />;
-                  </div>
+                  <SubPage title={item.title} unit={unit} />;
                 </Route>
               );
             })}
